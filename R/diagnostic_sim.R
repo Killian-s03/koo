@@ -27,6 +27,7 @@ diagnostic_sim<-function(x,lower_lambda,upper_lambda,inc){
   return(summary_box)
 }
 
-x<- rnorm(100,5,2)
+x<- rchisq(100,3)
+hist(x)
 diagnostic_sim(x,-2,2,0.1)
 
