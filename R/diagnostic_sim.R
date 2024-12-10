@@ -35,7 +35,7 @@
 #'
 #'
 #' @export
-diagnostic_sim<-function(x,lower_lambda,upper_lambda,inc){
+diagnostic_sim<-function(x,lower_lambda=-2,upper_lambda=2,inc=1){
   if (any(x <= 0)) {
     stop("All values in x must be positive for the Box-Cox transformation.")
   }
