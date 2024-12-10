@@ -18,7 +18,8 @@
 #'        If all values of x are not positive
 #'        If all values of x are not numeric
 #'        If the range of lambda values are not within [-5,5]. An optimal value will be in this range
-#'
+#'        If increment value is less than or equal to 0
+#'        If input vector contains any NA values
 #' @author Killian Slater
 #'
 #'
@@ -35,7 +36,6 @@
 #'
 #' @export
 diagnostic_sim<-function(x,lower_lambda,upper_lambda,inc){
-  lambda_range<- seq(lower_lambda,upper_lambda,by=inc)
   if (any(x <= 0)) {
     stop("All values in x must be positive for the Box-Cox transformation.")
   }
@@ -47,6 +47,14 @@ if (!all(is.numeric(x))){
 if(lower_lambda<(-5) & upper_lambda>5| lower_lambda< (-5)|upper_lambda>5){
   stop("Value for λ must be in the range [-5,5]")
 }
+if(anyNA(x)){
+  stop("Input vector 'x' contains missing values. Please remove them before proceeding" )
+}
+
+if(inc<=0){
+  stop("Increment value 'inc' must be positive")
+}
+  lambda_range<- seq(lower_lambda,upper_lambda,by=inc)
   summary_box<-data.frame(
     Lambda=lambda_range,
     Skewness= numeric(length(lambda_range)),
