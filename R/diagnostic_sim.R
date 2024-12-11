@@ -12,12 +12,12 @@
 #' @param lower_lambda a value for the lower range of lambda
 #' @param upper_lambda a value for the upper range of lambda
 #' @param inc a value for incrementing the range of lambda for each output across the range
-#' @param summary_box a data frame for storing the summary output
+#'
 #'
 #' Errors will be omitted in the following cases:
 #'        If all values of x are not positive
 #'        If all values of x are not numeric
-#'        If the range of lambda values are not within [-5,5]. An optimal value will be in this range
+#'        If the range of lambda values are not within \code{[-5, 5]}.,. An optimal value will be in this range
 #'        If increment value is less than or equal to 0
 #'        If input vector contains any NA values
 #' @author Killian Slater
@@ -45,7 +45,7 @@ if (!all(is.numeric(x))){
 }
 
 if(lower_lambda<(-5) & upper_lambda>5| lower_lambda< (-5)|upper_lambda>5){
-  stop("Value for λ must be in the range [-5,5]")
+  stop("Value for lambda must be in the range [-5,5]")
 }
 if(anyNA(x)){
   stop("Input vector 'x' contains missing values. Please remove them before proceeding" )
@@ -64,11 +64,12 @@ if(inc<=0){
 
   for(i in seq_along(lambda_range)){
     lambda<-lambda_range[i]
-    transformed<-box_transform(x,lambda)
+    transformed<-koo::box_transform(x,lambda)
     summary_box$Skewness[i]<- e1071::skewness(transformed)
     summary_box$Kurtosis[i]<-e1071::kurtosis(transformed)
     summary_box$Shapiro_Wilk_P_Value[i]<-shapiro.test(transformed)$p.value
   }
   return(summary_box)
 }
+
 

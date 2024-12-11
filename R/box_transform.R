@@ -5,7 +5,7 @@
 #' If lambda is 0, a log transformation is applied to the data
 #'
 #' @param x A numeric vector to be transformed. All values of x must be positive and must be numeric
-#' @param lambda Transformation parameter. If this is 0 a log transformation is applied. Must be in the range [-5,5]
+#' @param lambda Transformation parameter. If this is 0 a log transformation is applied. Must be in the range \code{[-5, 5]}
 #'
 #' @author Killian Slater
 #'
@@ -24,7 +24,7 @@ box_transform <-function(x,lambda){
     stop("Input Parameters must be all numeric")
   }
   if(lambda< (-5)|lambda>5){
-    stop("Value for λ must be in the range [-5,5]. This ensures optimal transformation")
+    stop("Value for lambda must be in the range [-5,5]. This ensures optimal transformation")
   }
 
   if(lambda==0){

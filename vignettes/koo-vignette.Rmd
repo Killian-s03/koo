@@ -23,11 +23,11 @@ Koo is an R package which simplifies and enhances Box-Cox transformations. This 
 
 1. `box_transform()`: For applying the Box-Cox transformation
 
-2. `inverse_box_transform()`: For transforming a Box-Cox transformed data set back to its original
+2. `inverse_boxcox()`: For transforming a Box-Cox transformed data set back to its original
 
 3. `BCVisual()`: For visualizing a plot of the transformed data in comparison to the original data.
 
-4. `optimallambda()`: For estimating the optimal lambda value for a given data set. Allows for most optimal transformation
+4. `estimate_optimal_lambda()`: For estimating the optimal lambda value for a given data set. Allows for most optimal transformation
 
 5. `box_diagnostic_plot()`: For visualizing the normal diagnostic plots of the transformed data and comparing this with the original diagnostic plots.
 
