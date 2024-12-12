@@ -25,13 +25,61 @@ Koo is an R package which simplifies and enhances Box-Cox transformations. This 
 
 2. `inverse_boxcox()`: For transforming a Box-Cox transformed data set back to its original
 
-3. `BCVisual()`: For visualizing a plot of the transformed data in comparison to the original data.
+3. `box_plot`: For visualizing a plot of the transformed data in comparison to the original data.
 
 4. `estimate_optimal_lambda()`: For estimating the optimal lambda value for a given data set. Allows for most optimal transformation
 
-5. `box_diagnostic_plot()`: For visualizing the normal diagnostic plots of the transformed data and comparing this with the original diagnostic plots.
+5. `box_diagnostics()`: For visualizing the normal diagnostic plots of the transformed data and comparing this with the original diagnostic plots.
 
 6. `diagnostic_sim()`: For generating a diagnostic summary of transformed data over a range of different lambda values.
 
+___koo___ will run in Windows, Mac OS X, or Linux. To install it you first need to install [R](https://cran.r-project.org/). Installing [RStudio](https://www.rstudio.com/) as a desktop environment for using R is also recommended for ease of use.
 
+Type into the R command prompt
+```{r,eval=FALSE}
+install.packages("devtools")
+devtools::install_github('Killian-s03/koo')
+```
+
+To install the latest development from the ___koo___  [GitHub page](https://github.com/Killian-s03/koo). 
+
+To load the package into R type:
+
+```{r,eval=FALSE}
+library(koo)
+```
+
+
+This will load all functions within the ___koo___ package.
+
+##`box_transform()`
+
+This function performs a Box-Cox transformation on a numeric vector. Errors will be thrown if the following conditions are not satisfied:
+          -all values must be positive
+          -x must be a numeric vector
+          -lambda must be in the range [-5,5]
+The transformed data will be returned in a numeric vector
+    
+```{r}
+x<- rexp(100,rate=0.5)
+transformed<-box_transform(x,lambda=0.5)
+head(transformed)
+```
+
+
+##`diagnostic_sim()`
+
+This function takes in a numeric vector, a range of lambda values and a value to increment the range.
+The Box-Cox transformation is applied to the data and a diagnostic summary is outputted.
+The summary includes:  -Lambda value
+                       -Skewness value
+                       -Kurtosis value (tailedness)
+                       -Shapiro Wilk P-value (test for normality)
+For each value of lambda over the range.
+
+```{r}
+x<- rexp(100,rate=0.5)
+summary<-diagnostic_sim(x,lower_lambda = -2,upper_lambda = 2,inc=1)
+head(summary)
+```
 
