@@ -1,19 +1,31 @@
 Package: koo
 Type: Package
-Title: Performs analysis, visualisations adn diagnostics on non-normal numeric data, using Box-Cox transformations 
+Title: Analysis, Visualizations, and Diagnostics for Non-Normal Numeric Data Using Box-Cox Transformations
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: GPL (>= 3)
+Authors@R: 
+    c(person("Killian", "Slater", email = "killian.slater@icloud.com", role = c("aut", "cre")),
+    person("Oisin", "Ryan", email = "oisin.ryan.2022@mumail.ie", role = ("aut")),
+    person("Olivia", "Summerville Mullen", email = "---@gmail.com", role = ("aut")))
+Description: 
+    Provides tools for performing Box-Cox transformations, inverse Box-Cox transformations, 
+    and estimating the optimal lambda for such transformations. Additionally, the package 
+    includes functionality to generate normalized and diagnostic plots, output diagnostic 
+    summaries, and analyze non-normal numeric data. It is designed to help stabilize variance 
+    and make data more normally distributed for statistical modeling and analysis.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Suggests: 
     knitr,
     rmarkdown
+Date: 2024-12-11
 VignetteBuilder: knitr
+URL: https://github.com/Killian-s03/koo.git
+BugReports: https://github.com/Killian-s03/koo/issues
 RoxygenNote: 7.3.2
-Imports: stats,
-        e1071
+Imports: 
+    stats,
+    e1071,
+    ggplot2,
+    gridExtra
 Roxygen: list(markdown = TRUE)
