@@ -1,11 +1,11 @@
-\name{box_diagnostic_plot}
+\name{box_diagnostics}
 \title{Box-Cox Diagnostic Plots}
 \description{
   This function generates diagnostic plots comparing the original data and the transformed data.
   Includes QQ plots for normality checks and a box plot to highlight change in data spread and central tendency.
 }
 \usage{
-box_diagnostic_plot(x, transformed_x = NULL, lambda = NULL)
+box_diagnostics(x, transformed_x = NULL, lambda = NULL)
 }
 \arguments{
   \item{x}{A numeric vector of the original data.}
@@ -29,7 +29,7 @@ box_diagnostic_plot(x, transformed_x = NULL, lambda = NULL)
 }
 \examples{
 x <- c(1, 2, 3, 4, 10, 15, 25)
-box_diagnostic_plot(x, lambda = 0.5)
+box_diagnostics(x, lambda = 0.5)
 }
 \author{Olivia Summerville}
 \import{ggplot2}
