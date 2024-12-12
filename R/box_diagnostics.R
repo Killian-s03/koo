@@ -6,8 +6,14 @@
 #' @param x A numeric vector of the original data.
 #' @param transformed_x An optional numeric vector of the transformed data. If not provided, the function will calculate it.
 #' @param lambda Transformation parameter for the Box-Cox transformation (ignored if `transformed_x` is provided).
+#'
+#' @author Olivia Summerville
+#'
 #' @return A combined grid of diagnostic plots.
+#'
 #' @import ggplot2
+#' @import gridExtra
+#'
 #' @examples
 #' x <- c(1, 2, 3, 4, 10, 15, 25)
 #' box_diagnostic_plot(x, lambda = 0.5)
