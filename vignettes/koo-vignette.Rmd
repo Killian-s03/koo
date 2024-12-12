@@ -1,0 +1,37 @@
+---
+title: "my-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(koo)
+```
+
+
+Koo is an R package which simplifies and enhances Box-Cox transformations. This package provides a suite of functions which allow a user to apply, analyze and visualize Box-Cox transformations. Six functions are included in the package.
+
+1. `box_transform()`: For applying the Box-Cox transformation
+
+2. `inverse_boxcox()`: For transforming a Box-Cox transformed data set back to its original
+
+3. `BCVisual()`: For visualizing a plot of the transformed data in comparison to the original data.
+
+4. `estimate_optimal_lambda()`: For estimating the optimal lambda value for a given data set. Allows for most optimal transformation
+
+5. `box_diagnostic_plot()`: For visualizing the normal diagnostic plots of the transformed data and comparing this with the original diagnostic plots.
+
+6. `diagnostic_sim()`: For generating a diagnostic summary of transformed data over a range of different lambda values.
+
+
+

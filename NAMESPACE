@@ -1,1 +1,3 @@
 exportPattern("^[[:alpha:]]+")
+importFrom("stats", "lm", "logLik", "shapiro.test")
+importFrom("e1071","skewness","kurtosis")
