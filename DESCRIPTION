@@ -5,7 +5,7 @@ Version: 0.1.0
 Authors@R: 
     c(person("Killian", "Slater", email = "killian.slater@icloud.com", role = c("aut", "cre")),
     person("Oisin", "Ryan", email = "oisin.ryan.2022@mumail.ie", role = ("aut")),
-    person("Olivia", "Summerville Mullen", email = "---@gmail.com", role = ("aut")))
+    person("Olivia", "Summerville Mullen", email = "Olivia.Summervillemullen.2021@mumail.ie", role = ("aut")))
 Description: 
     Provides tools for performing Box-Cox transformations, inverse Box-Cox transformations, 
     and estimating the optimal lambda for such transformations. Additionally, the package 
