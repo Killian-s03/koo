@@ -17,9 +17,11 @@ Encoding: UTF-8
 LazyData: true
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 Date: 2024-12-11
-VignetteBuilder: knitr
+VignetteBuilder: knitr,
+                 rmarkdown
 URL: https://github.com/Killian-s03/koo.git
 BugReports: https://github.com/Killian-s03/koo/issues
 RoxygenNote: 7.3.2
@@ -29,3 +31,4 @@ Imports:
     ggplot2,
     gridExtra
 Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
