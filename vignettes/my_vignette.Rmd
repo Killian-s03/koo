@@ -1,0 +1,82 @@
+---
+title: "my_vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(koo)
+```
+
+Koo is an R package which simplifies and enhances Box-Cox transformations. This package provides a suite of functions which allow a user to apply, analyze and visualize Box-Cox transformations. Six functions are included in the package.
+
+1. `box_transform()`: For applying the Box-Cox transformation
+
+2. `inverse_boxcox()`: For transforming a Box-Cox transformed data set back to its original
+
+3. `box_plot`: For visualizing a plot of the transformed data in comparison to the original data.
+
+4. `estimate_optimal_lambda()`: For estimating the optimal lambda value for a given data set. Allows for most optimal transformation
+
+5. `box_diagnostics()`: For visualizing the normal diagnostic plots of the transformed data and comparing this with the original diagnostic plots.
+
+6. `diagnostic_sim()`: For generating a diagnostic summary of transformed data over a range of different lambda values.
+
+___koo___ will run in Windows, Mac OS X, or Linux. To install it you first need to install [R](https://cran.r-project.org/). Installing [RStudio](https://www.rstudio.com/) as a desktop environment for using R is also recommended for ease of use.
+
+Type into the R command prompt
+```{r,eval=FALSE}
+install.packages("devtools")
+devtools::install_github('Killian-s03/koo')
+```
+
+To install the latest development from the ___koo___  [GitHub page](https://github.com/Killian-s03/koo). 
+
+To load the package into R type:
+
+```{r,eval=FALSE}
+library(koo)
+```
+
+
+This will load all functions within the ___koo___ package.
+
+
+##'inverse_boxcox'
+
+The inverse_boxcox function applies the inverse Box-Cox transformation to a dataset that has been previously transformed. This method restores the original scale of the data using the specified $\lambda$.
+
+```{r}
+transformed <- c(2.3, 1.8, 3.1)
+lambda <- 0.5
+inverse <- inverse_boxcox(transformed, lambda)
+print(inverse)
+```
+
+##'estimate_optimal_lambda
+
+The estimate_optimal_lambda function provides a flexible way to determine the optimal value of $\lambda$ for the Box-Cox transformation. This function can handle a variety of input types, including data frames, matrices, and numeric vectors, and supports user-defined ranges and resolution for $\lambda$ values.
+It works by evaluating the log-likelihood of a fitted linear model for various lambda values and selecting the one that maximizes the log-likelihood.
+
+```{r}
+set.seed(2000)
+mat <- cbind(
+  y = rexp(100, rate = 0.3),
+  x1 = runif(100, 2, 8),
+  x2 = runif(100, 10, 20)
+)
+lambda_optimal <- estimate_optimal_lambda(mat, lambda_range = c(-2, 2), resolution = 100)
+print(lambda_optimal)
+```
+
+
