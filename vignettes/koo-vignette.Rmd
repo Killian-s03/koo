@@ -83,3 +83,29 @@ summary<-diagnostic_sim(x,lower_lambda = -2,upper_lambda = 2,inc=1)
 head(summary)
 ```
 
+##`inverse_boxcox`
+
+The inverse_boxcox function applies the inverse Box-Cox transformation to a dataset that has been previously transformed. This method restores the original scale of the data using the specified $\lambda$.
+
+```{r}
+transformed <- c(2.3, 1.8, 3.1)
+lambda <- 0.5
+inverse <- inverse_boxcox(transformed, lambda)
+print(inverse)
+```
+
+##`estimate_optimal_lambda`
+
+The estimate_optimal_lambda function provides a flexible way to determine the optimal value of $\lambda$ for the Box-Cox transformation. This function can handle a variety of input types, including data frames, matrices, and numeric vectors, and supports user-defined ranges and resolution for $\lambda$ values.
+It works by evaluating the log-likelihood of a fitted linear model for various lambda values and selecting the one that maximizes the log-likelihood.
+
+```{r}
+set.seed(2000)
+mat <- cbind(
+  y = rexp(100, rate = 0.3),
+  x1 = runif(100, 2, 8),
+  x2 = runif(100, 10, 20)
+)
+lambda_optimal <- estimate_optimal_lambda.matrix(mat, lambda_range = c(-2, 2), resolution = 100)
+print(lambda_optimal)
+```
