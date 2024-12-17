@@ -34,7 +34,7 @@ box_plot <- function(x, transformed_x = NULL, lambda = NULL, plot_type = "histog
     transformed_x <- box_transform(x, lambda)
   }
 
-  library(ggplot2)
+
   scatter_original <- ggplot(data.frame(Original = x), aes(x = Original, y = Original)) +
     geom_point(color = "cyan3") +
     theme_minimal() +

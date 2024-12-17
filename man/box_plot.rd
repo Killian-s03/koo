@@ -1,5 +1,6 @@
 \name{box_plot}
 \title{Box-Cox Transformation Visualization}
+\alias{box_plot}
 \description{
   This function compares the distribution of the original data with the transformed data
   using side-by-side histograms or density plots.
@@ -30,5 +31,6 @@ box_plot(x, transformed_x = NULL, lambda = NULL, plot_type = "histogram")
 x <- c(1, 2, 3, 4, 10, 15, 25)
 box_plot(x, lambda = 0.5)
 }
-\author
+\author{
 Olivia Summerville
+}
