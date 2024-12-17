@@ -9,7 +9,7 @@
 \arguments{
 \item{object}{an object for the default lambda estimation}
 
-\item{...}{additonal parameters}
+\item{...}{additional parameters}
 }
 \description{
 default method
