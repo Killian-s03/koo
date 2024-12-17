@@ -1,7 +1,7 @@
 #' Box-Cox Transformation Visualization
 #'
 #' This function compares the distribution of the original data with the transformed data
-#' using side-by-side scatter plots, histograms or density plots.
+#' using side-by-side histograms or density plots.
 #'
 #' @param x A numeric vector of the original data.
 #' @param transformed_x An optional numeric vector of the transformed data. If not provided, the function will calculate it.

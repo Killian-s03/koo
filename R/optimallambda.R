@@ -10,7 +10,7 @@ estimate_optimal_lambda <- function(object, ...) {
 }
 
 #' objects of class data.frame
-#' @param object An object (data.frame or matrix) containing the response variable and predictors.
+#' @param object An object (data.frame) containing the response variable and predictors.
 #' @param lambda_range A numeric vector of length 2 specifying the range of lambda values to consider (default: -2 to 2).
 #' @param resolution The number of lambda values to evaluate within the range (default: 100).
 #' @return A numeric value representing the optimal lambda.
@@ -37,7 +37,7 @@ estimate_optimal_lambda.data.frame <- function(object, lambda_range = c(-2, 2), 
 }
 
 #' Method for objects of class matrix
-#' @param object An object (data.frame or matrix) containing the response variable and predictors.
+#' @param object An object (matrix) containing the response variable and predictors.
 #' @param lambda_range A numeric vector of length 2 specifying the range of lambda values to consider (default: -2 to 2).
 #' @param resolution The number of lambda values to evaluate within the range (default: 100).
 #' @return A numeric value representing the optimal lambda.
@@ -54,6 +54,27 @@ estimate_optimal_lambda.matrix <- function(object, lambda_range = c(-2, 2), reso
   # call shared calculation function
   return(calculate_optimal_lambda(response, predictors, lambda_range, resolution))
 }
+
+
+
+#'Method for objects of class numeric
+#'@param object Object of type numeric vector
+#' @param lambda_range A numeric vector of length 2 specifying the range of lambda values to consider (default: -2 to 2).
+#' @param resolution The number of lambda values to evaluate within the range (default: 100).
+#' @return A numeric value representing the optimal lambda.
+#'
+#' @export
+estimate_optimal_lambda.numeric <- function(object, lambda_range = c(-2, 2), resolution = 100) {
+  if (any(object <= 0)) {
+    stop("All elements of the numeric vector must be strictly positive for the Box-Cox transformation.")
+  }
+  df <- data.frame(y = object)
+  predictors <- NULL
+  estimate_optimal_lambda.data.frame(df, lambda_range = lambda_range,resolution = resolution)
+}
+
+
+
 
 #' Shared function for calculating optimal lambda
 #' @param lambda_range A numeric vector of length 2 specifying the range of lambda values to consider (default: -2 to 2).
@@ -91,7 +112,7 @@ calculate_optimal_lambda <- function(response, predictors, lambda_range=c(-2,2),
 
 #'default method
 #'@param object an object for the default lambda estimation
-#'@param ... additonal parameters
+#'@param ... additional parameters
 #' @export
 estimate_optimal_lambda.default <- function(object, ...) {
   stop("No method implemented for this object class.")

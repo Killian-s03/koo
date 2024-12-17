@@ -1,5 +1,6 @@
 \name{box_diagnostics}
 \title{Box-Cox Diagnostic Plots}
+\alias{box_diagnostics}
 \description{
   This function generates diagnostic plots comparing the original data and the transformed data.
   Includes QQ plots for normality checks and a box plot to highlight change in data spread and central tendency.
@@ -32,5 +33,3 @@ x <- c(1, 2, 3, 4, 10, 15, 25)
 box_diagnostics(x, lambda = 0.5)
 }
 \author{Olivia Summerville}
-\import{ggplot2}
-\import{gridExtra}
