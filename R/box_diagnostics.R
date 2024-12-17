@@ -6,7 +6,6 @@
 #' @param x A numeric vector of the original data.
 #' @param transformed_x An optional numeric vector of the transformed data. If not provided, the function will calculate it.
 #' @param lambda Transformation parameter for the Box-Cox transformation (ignored if `transformed_x` is provided).
-#'
 #' @author Olivia Summerville
 #'
 #' @return A combined grid of diagnostic plots.
@@ -18,7 +17,7 @@
 #' x <- c(1, 2, 3, 4, 10, 15, 25)
 #' box_diagnostic_plot(x, lambda = 0.5)
 #' @export
-box_diagnostics<- function(x, transformed_x = NULL, lambda = NULL) {
+box_diagnostics <- function(x, transformed_x = NULL, lambda = NULL) {
   if (any(x <= 0)) {
     stop("All values in x must be positive for the Box-Cox transformation.")
   }

@@ -25,13 +25,111 @@ Koo is an R package which simplifies and enhances Box-Cox transformations. This 
 
 2. `inverse_boxcox()`: For transforming a Box-Cox transformed data set back to its original
 
-3. `BCVisual()`: For visualizing a plot of the transformed data in comparison to the original data.
+3. `box_plot`: For visualizing a plot of the transformed data in comparison to the original data.
 
 4. `estimate_optimal_lambda()`: For estimating the optimal lambda value for a given data set. Allows for most optimal transformation
 
-5. `box_diagnostic_plot()`: For visualizing the normal diagnostic plots of the transformed data and comparing this with the original diagnostic plots.
+5. `box_diagnostics()`: For visualizing the normal diagnostic plots of the transformed data and comparing this with the original diagnostic plots.
 
 6. `diagnostic_sim()`: For generating a diagnostic summary of transformed data over a range of different lambda values.
 
+___koo___ will run in Windows, Mac OS X, or Linux. To install it you first need to install [R](https://cran.r-project.org/). Installing [RStudio](https://www.rstudio.com/) as a desktop environment for using R is also recommended for ease of use.
+
+Type into the R command prompt
+```{r,eval=FALSE}
+install.packages("devtools")
+devtools::install_github('Killian-s03/koo')
+```
+
+To install the latest development from the ___koo___  [GitHub page](https://github.com/Killian-s03/koo). 
+
+To load the package into R type:
+
+```{r,eval=FALSE}
+library(koo)
+```
 
 
+This will load all functions within the ___koo___ package.
+
+##`box_transform()`
+
+This function performs a Box-Cox transformation on a numeric vector. Errors will be thrown if the following conditions are not satisfied:
+          -all values must be positive
+          -x must be a numeric vector
+          -lambda must be in the range [-5,5]
+The transformed data will be returned in a numeric vector
+    
+```{r}
+x<- rexp(100,rate=0.5)
+transformed<-box_transform(x,lambda=0.5)
+head(transformed)
+```
+
+
+##`diagnostic_sim()`
+
+This function takes in a numeric vector, a range of lambda values and a value to increment the range.
+The Box-Cox transformation is applied to the data and a diagnostic summary is outputted.
+The summary includes:  -Lambda value
+                       -Skewness value
+                       -Kurtosis value (tailedness)
+                       -Shapiro Wilk P-value (test for normality)
+For each value of lambda over the range.
+
+```{r}
+x<- rexp(100,rate=0.5)
+summary<-diagnostic_sim(x,lower_lambda = -2,upper_lambda = 2,inc=1)
+head(summary)
+```
+
+##`inverse_boxcox`
+
+The inverse_boxcox function applies the inverse Box-Cox transformation to a dataset that has been previously transformed. This method restores the original scale of the data using the specified $\lambda$.
+
+```{r}
+transformed <- c(2.3, 1.8, 3.1)
+lambda <- 0.5
+inverse <- inverse_boxcox(transformed, lambda)
+print(inverse)
+```
+
+##`estimate_optimal_lambda`
+
+The estimate_optimal_lambda function provides a flexible way to determine the optimal value of $\lambda$ for the Box-Cox transformation. This function can handle a variety of input types, including data frames, matrices, and numeric vectors, and supports user-defined ranges and resolution for $\lambda$ values.
+It works by evaluating the log-likelihood of a fitted linear model for various lambda values and selecting the one that maximizes the log-likelihood.
+
+```{r}
+set.seed(2000)
+mat <- cbind(
+  y = rexp(100, rate = 0.3),
+  x1 = runif(100, 2, 8),
+  x2 = runif(100, 10, 20)
+)
+lambda_optimal <- estimate_optimal_lambda.matrix(mat, lambda_range = c(-2, 2), resolution = 100)
+print(lambda_optimal)
+```
+
+##`box_plot`
+
+The box_plot function compares the distribution of the original data with the transformed data using side-by-side histograms or density plots. It takes in a numeric vector of original data, an optional numeric vector of transformed data which if it is not included will be calculated, a value for lambda which is ignored if the transformed data is provided and plot type. The functions output is a ggplot2 object that compares the original data vs the transformed data.
+Errors will be thrown if the following conditions are not satisfied:
+          -all values must be positive
+          -x must be a numeric vector
+          -lambda is provided if transformed_x is not
+          
+```{r}
+x <- rexp(100, rate = 0.5)
+box_plot(x, lambda = 0.5, plot_type = "histogram")
+```
+
+##`box_diagnostics`
+The box_diagnostics() function creates diagnostic plots to assess the effects of the Box-Cox transformation. It generates QQ plots for normality checks of the original and transformed data and boxplots comparing the spread and central tendency. It takes in x, a numeric vector of the original data, an optional numeric vector of the transformed data or a value for lambda to calculate the transformation. 
+Errors will be thrown if the following conditions are not satisfied:
+          -all values must be positive
+          -x must be a numeric vector
+          -lambda is provided if transformed_x is not.
+```{r}
+x <- c(1, 2, 3, 4, 10, 15, 25)
+box_diagnostics(x, lambda = 0.5)
+```
