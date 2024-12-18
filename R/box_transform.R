@@ -16,22 +16,21 @@
 #' box_transform(x,lambda=1)
 #'
 #'@export
-box_transform <-function(x,lambda){
-  if(any(x<=0)){
+box_transform <- function(x, lambda) {
+  if (any(x <= 0)) {
     stop("All x values must be positive")
   }
-  if (!all(is.numeric(x))){
-    stop("Input Parameters must be all numeric")
+
+  if (!all(is.numeric(x))) {
+    stop("Input parameters must be all numeric")
   }
-  if(lambda< (-5)|lambda>5){
+
+  if (lambda < -5 | lambda > 5) {
     stop("Value for lambda must be in the range [-5,5]. This ensures optimal transformation")
   }
 
-  if(lambda==0){
-    return(log(x))
-  }else{
-    return(((x^lambda)-1)/lambda)
-  }
+  x |>
+    (\(x) if (lambda == 0) log(x) else ((x^lambda) - 1) / lambda)()
 }
 
 
