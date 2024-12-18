@@ -8,8 +8,8 @@
 #' @return A numeric vector or matrix with the original data restored (inverse transformation).
 inverse_boxcox <- function(x, lambda) {
   if (lambda == 0) {
-    return(exp(x))
+    x |> exp()
   } else {
-    return((x * lambda + 1)^(1 / lambda))
+    x |> (\(y) (y * lambda + 1)^(1 / lambda))()
   }
 }
