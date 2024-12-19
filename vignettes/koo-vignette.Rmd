@@ -118,7 +118,7 @@ Errors will be thrown if the following conditions are not satisfied:
           -x must be a numeric vector
           -lambda is provided if transformed_x is not
           
-```{r}
+```{r,fig.width=8,fig.align='center'}
 x <- rexp(100, rate = 0.5)
 box_plot(x, lambda = 0.5, plot_type = "histogram")
 ```
@@ -129,7 +129,7 @@ Errors will be thrown if the following conditions are not satisfied:
           -all values must be positive
           -x must be a numeric vector
           -lambda is provided if transformed_x is not.
-```{r}
+```{r,fig.width=8,fig.align='center'}
 x <- c(1, 2, 3, 4, 10, 15, 25)
 box_diagnostics(x, lambda = 0.5)
 ```
