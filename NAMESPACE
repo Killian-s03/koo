@@ -1,5 +1,5 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("stats", "lm", "logLik", "shapiro.test")
+importFrom("stats", "lm", "logLik", "shapiro.test","density")
 importFrom("e1071","skewness","kurtosis")
 import("ggplot2")
 importFrom("gridExtra","grid.arrange")
