@@ -4,10 +4,12 @@
 \alias{estimate_optimal_lambda.matrix}
 \title{Method for objects of class matrix}
 \usage{
-\method{estimate_optimal_lambda}{matrix}(object, lambda_range = c(-2, 2), resolution = 100)
+\method{estimate_optimal_lambda}{matrix}(object, ..., lambda_range = c(-2, 2), resolution = 100)
 }
 \arguments{
 \item{object}{An object (matrix) containing the response variable and predictors.}
+
+\item{...}{Additional arguements passed to specific methods}
 
 \item{lambda_range}{A numeric vector of length 2 specifying the range of lambda values to consider (default: -2 to 2).}
 

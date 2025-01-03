@@ -25,8 +25,8 @@
 #'
 #' @return A data frame containing a summary of all diagnostics from each lambda value
 #'
-#' @import e1017
-#' @importFrom stats shapiro.test
+#' @import e1071
+#'
 #'
 #'
 #' @examples
@@ -67,7 +67,7 @@ if(inc<=0){
     transformed<-koo::box_transform(x,lambda)
     summary_box$Skewness[i]<- e1071::skewness(transformed)
     summary_box$Kurtosis[i]<-e1071::kurtosis(transformed)
-    summary_box$Shapiro_Wilk_P_Value[i]<-shapiro.test(transformed)$p.value
+    summary_box$Shapiro_Wilk_P_Value[i]<-stats::shapiro.test(transformed)$p.value
   }
   return(summary_box)
 }

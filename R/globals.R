@@ -1,1 +1,1 @@
-utils::globalVariables(c("Value", "Type", "Original", "Transformed", "..density.."))
+utils::globalVariables(c("Value", "Type", "Original", "Transformed", "density"))

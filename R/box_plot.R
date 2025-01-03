@@ -46,7 +46,7 @@ box_plot <- function(x, transformed_x = NULL, lambda = NULL, plot_type = "histog
     labs(title = "Scatter Plot: Transformed Data", x = "Original Value", y = "Transformed Value")
 
   hist_original <- ggplot(data.frame(Value = x), aes(x = Value)) +
-    geom_histogram(binwidth = 1, fill = "cyan3", alpha = 0.6, aes(y = after_stat(density))) +
+    geom_histogram(binwidth = 1, fill = "cyan3", alpha = 0.6, aes(y =after_stat(density))) +
     theme_minimal() +
     labs(title = "Histogram: Original Data", x = "Value", y = "Density")
 

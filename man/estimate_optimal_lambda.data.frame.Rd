@@ -4,10 +4,12 @@
 \alias{estimate_optimal_lambda.data.frame}
 \title{objects of class data.frame}
 \usage{
-\method{estimate_optimal_lambda}{data.frame}(object, lambda_range = c(-2, 2), resolution = 100)
+\method{estimate_optimal_lambda}{data.frame}(object, ..., lambda_range = c(-2, 2), resolution = 100)
 }
 \arguments{
 \item{object}{An object (data.frame) containing the response variable and predictors.}
+
+\item{...}{Additional arguements passed to specific methods}
 
 \item{lambda_range}{A numeric vector of length 2 specifying the range of lambda values to consider (default: -2 to 2).}
 
@@ -26,6 +28,6 @@ df <- data.frame(
   x1 = runif(100, 1, 10),
   x2 = runif(100, 5, 15)
  )
- lambda_optimal_df <- estimate_optimal_lambda.data.frame(df, lambda_range = c(-2, 2))
+ lambda_optimal_df <- estimate_optimal_lambda(df, lambda_range = c(-2, 2))
  print(lambda_optimal_df)
 }

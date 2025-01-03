@@ -6,6 +6,7 @@
 #' @param x Transformed data (numeric vector or matrix).
 #' @param lambda Value of lambda used in the original Box-Cox transformation.
 #' @return A numeric vector or matrix with the original data restored (inverse transformation).
+#' @export
 inverse_boxcox <- function(x, lambda) {
   if (lambda == 0) {
     x |> exp()

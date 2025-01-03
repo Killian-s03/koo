@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' x <- c(1, 2, 3, 4, 10, 15, 25)
-#' box_diagnostic_plot(x, lambda = 0.5)
+#' box_diagnostics(x, lambda = 0.5)
 #' @export
 box_diagnostics <- function(x, transformed_x = NULL, lambda = NULL) {
   if (any(x <= 0)) {

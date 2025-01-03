@@ -4,10 +4,12 @@
 \alias{estimate_optimal_lambda.numeric}
 \title{Method for objects of class numeric}
 \usage{
-\method{estimate_optimal_lambda}{numeric}(object, lambda_range = c(-2, 2), resolution = 100)
+\method{estimate_optimal_lambda}{numeric}(object, ..., lambda_range = c(-2, 2), resolution = 100)
 }
 \arguments{
 \item{object}{Object of type numeric vector}
+
+\item{...}{Additional arguements passed to specific methods}
 
 \item{lambda_range}{A numeric vector of length 2 specifying the range of lambda values to consider (default: -2 to 2).}
 

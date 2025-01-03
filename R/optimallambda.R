@@ -13,6 +13,7 @@ estimate_optimal_lambda <- function(object, ...) {
 #' @param object An object (data.frame) containing the response variable and predictors.
 #' @param lambda_range A numeric vector of length 2 specifying the range of lambda values to consider (default: -2 to 2).
 #' @param resolution The number of lambda values to evaluate within the range (default: 100).
+#' @param ... Additional arguements passed to specific methods
 #' @return A numeric value representing the optimal lambda.
 #' @examples
 #' set.seed(123)
@@ -21,10 +22,10 @@ estimate_optimal_lambda <- function(object, ...) {
 #'   x1 = runif(100, 1, 10),
 #'   x2 = runif(100, 5, 15)
 #'  )
-#'  lambda_optimal_df <- estimate_optimal_lambda.data.frame(df, lambda_range = c(-2, 2))
+#'  lambda_optimal_df <- estimate_optimal_lambda(df, lambda_range = c(-2, 2))
 #'  print(lambda_optimal_df)
 #' @export
-estimate_optimal_lambda.data.frame <- function(object, lambda_range = c(-2, 2), resolution = 100) {
+estimate_optimal_lambda.data.frame <- function(object,..., lambda_range = c(-2, 2), resolution = 100) {
   #extract response and predictors
   if (!"y" %in% colnames(object)) {
     stop("Response variable 'y' must be present in the data frame.")
@@ -40,9 +41,10 @@ estimate_optimal_lambda.data.frame <- function(object, lambda_range = c(-2, 2), 
 #' @param object An object (matrix) containing the response variable and predictors.
 #' @param lambda_range A numeric vector of length 2 specifying the range of lambda values to consider (default: -2 to 2).
 #' @param resolution The number of lambda values to evaluate within the range (default: 100).
+#' @param ... Additional arguements passed to specific methods
 #' @return A numeric value representing the optimal lambda.
 #' @export
-estimate_optimal_lambda.matrix <- function(object, lambda_range = c(-2, 2), resolution = 100) {
+estimate_optimal_lambda.matrix <- function(object,..., lambda_range = c(-2, 2), resolution = 100) {
   # ensure matrix has a response column and predictors
   if (ncol(object) < 2) {
     stop("Matrix must have at least two columns (response variable + predictors).")
@@ -61,10 +63,11 @@ estimate_optimal_lambda.matrix <- function(object, lambda_range = c(-2, 2), reso
 #'@param object Object of type numeric vector
 #' @param lambda_range A numeric vector of length 2 specifying the range of lambda values to consider (default: -2 to 2).
 #' @param resolution The number of lambda values to evaluate within the range (default: 100).
+#' @param ... Additional arguements passed to specific methods
 #' @return A numeric value representing the optimal lambda.
 #'
 #' @export
-estimate_optimal_lambda.numeric <- function(object, lambda_range = c(-2, 2), resolution = 100) {
+estimate_optimal_lambda.numeric <- function(object,..., lambda_range = c(-2, 2), resolution = 100) {
   if (any(object <= 0)) {
     stop("All elements of the numeric vector must be strictly positive for the Box-Cox transformation.")
   }
@@ -100,8 +103,8 @@ calculate_optimal_lambda <- function(response, predictors, lambda_range=c(-2,2),
     }
 
     #fit linear model
-    model_trans <- lm(y_trans ~ ., data = as.data.frame(cbind(y_trans, predictors)))
-    logLik(model_trans)
+    model_trans <- stats::lm(y_trans ~ ., data = as.data.frame(cbind(y_trans, predictors)))
+    stats::logLik(model_trans)
   })
 
   #select lambda that maximizes log-likelihood
