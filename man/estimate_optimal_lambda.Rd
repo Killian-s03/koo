@@ -2,16 +2,57 @@
 % Please edit documentation in R/optimallambda.R
 \name{estimate_optimal_lambda}
 \alias{estimate_optimal_lambda}
+\alias{estimate_optimal_lambda.data.frame}
+\alias{estimate_optimal_lambda.matrix}
+\alias{estimate_optimal_lambda.numeric}
+\alias{calculate_optimal_lambda}
+\alias{estimate_optimal_lambda.default}
 \title{Estimate Optimal Lambda for Box-Cox Transformation}
 \usage{
 estimate_optimal_lambda(object, ...)
+
+\method{estimate_optimal_lambda}{data.frame}(object, ..., lambda_range = c(-2, 2), resolution = 100)
+
+\method{estimate_optimal_lambda}{matrix}(object, ..., lambda_range = c(-2, 2), resolution = 100)
+
+\method{estimate_optimal_lambda}{numeric}(object, ..., lambda_range = c(-2, 2), resolution = 100)
+
+calculate_optimal_lambda(
+  response,
+  predictors,
+  lambda_range = c(-2, 2),
+  resolution = 100
+)
+
+\method{estimate_optimal_lambda}{default}(object, ...)
 }
 \arguments{
-\item{object}{An object for which the optimal lambda is estimated.}
+\item{object}{an object for the default lambda estimation}
 
-\item{...}{Additional arguements passed to specific methods}
+\item{...}{additional parameters}
+
+\item{lambda_range}{A numeric vector of length 2 specifying the range of lambda values to consider (default: -2 to 2).}
+
+\item{resolution}{The number of lambda values to evaluate within the range (default: 100).}
+
+\item{response}{Response variable from object for the fitted model}
+
+\item{predictors}{predictors from the model}
+}
+\value{
+A numeric value representing the optimal lambda.
 }
 \description{
 This method estimates the optimal value of lambda for a Box-Cox transformation directly from a data frame or matrix.
 The method calculates log-likelihood values for a range of lambda values and selects the optimal lambda.
+}
+\examples{
+set.seed(123)
+df <- data.frame(
+  y = rexp(100, rate = 0.2),
+  x1 = runif(100, 1, 10),
+  x2 = runif(100, 5, 15)
+ )
+ lambda_optimal_df <- estimate_optimal_lambda(df, lambda_range = c(-2, 2))
+ print(lambda_optimal_df)
 }
