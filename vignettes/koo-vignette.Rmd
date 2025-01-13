@@ -55,13 +55,13 @@ This will load all functions within the ___koo___ package.
 
 
 
-## `box_transform()`
+## `The box_transform() Function`
 
-This function performs a Box-Cox transformation on a numeric vector. Errors will be thrown if the following conditions are not satisfied:
-          -all values must be positive
-          -x must be a numeric vector
-          -lambda must be in the range [-5,5]
-The transformed data will be returned in a numeric vector
+This function performs a Box-Cox transformation on a numeric vector. Errors will be thrown if the following conditions are not satisfied: 
+          -all values must be positive  
+          -x must be a numeric vector  
+          -lambda must be in the range [-5,5]  
+The transformed data will be returned in a numeric vector  
     
 ```{r}
 x<- rexp(100,rate=0.5)
@@ -72,14 +72,13 @@ head(transformed)
 
 
 
-## `diagnostic_sim()`
+## `The diagnostic_sim() Function`
 
 This function takes in a numeric vector, a range of lambda values and a value to increment the range.
-The Box-Cox transformation is applied to the data and a diagnostic summary is outputted.
-The summary includes:  -Lambda value
-                       -Skewness value
-                       -Kurtosis value (tailedness)
-                       -Shapiro Wilk P-value (test for normality)
+The Box-Cox transformation is applied to the data and a diagnostic summary is outputted. The summary includes:   -Lambda value  
+                       -Skewness value  
+                       -Kurtosis value (tailedness)  
+                       -Shapiro Wilk P-value (test for normality)  
 For each value of lambda over the range.
 
 ```{r}
@@ -91,7 +90,7 @@ head(summary)
 
 
 
-## `inverse_boxcox()`
+## `The inverse_boxcox() Function`
 
 The inverse_boxcox function applies the inverse Box-Cox transformation to a data set that has been previously transformed. This method restores the original scale of the data using the specified $\lambda$.
 
@@ -102,7 +101,7 @@ inverse <- inverse_boxcox(transformed, lambda)
 print(inverse)
 ```
 
-## `estimate_optimal_lambda()`
+## `The estimate_optimal_lambda() Function`
 
 The estimate_optimal_lambda function provides a flexible way to determine the optimal value of $\lambda$ for the Box-Cox transformation. This function can handle a variety of input types, including data frames, matrices, and numeric vectors, and supports user-defined ranges and resolution for $\lambda$ values.
 It works by evaluating the log-likelihood of a fitted linear model for various lambda values and selecting the one that maximizes the log-likelihood.
@@ -121,13 +120,13 @@ print(lambda_optimal)
 
 
 
-## `box_plot()`
+## `The box_plot() Function`
 
 The box_plot function compares the distribution of the original data with the transformed data using side-by-side histograms or density plots. It takes in a numeric vector of original data, an optional numeric vector of transformed data which if it is not included will be calculated, a value for lambda which is ignored if the transformed data is provided and plot type. The functions output is a ggplot2 object that compares the original data vs the transformed data.
-Errors will be thrown if the following conditions are not satisfied:
-          -all values must be positive
-          -x must be a numeric vector
-          -lambda is provided if transformed_x is not
+Errors will be thrown if the following conditions are not satisfied:  
+          -all values must be positive  
+          -x must be a numeric vector  
+          -lambda is provided if transformed_x is not  
           
 ```{r,fig.width=8,fig.align='center'}
 x <- rexp(100, rate = 0.5)
@@ -137,12 +136,12 @@ box_plot(x, lambda = 0.5, plot_type = "histogram")
 
 
 
-## `box_diagnostics()`
+## `The box_diagnostics() Function`
 The box_diagnostics() function creates diagnostic plots to assess the effects of the Box-Cox transformation. It generates QQ plots for normality checks of the original and transformed data and boxplots comparing the spread and central tendency. It takes in x, a numeric vector of the original data, an optional numeric vector of the transformed data or a value for lambda to calculate the transformation. 
-Errors will be thrown if the following conditions are not satisfied:
-          -all values must be positive
-          -x must be a numeric vector
-          -lambda is provided if transformed_x is not.
+Errors will be thrown if the following conditions are not satisfied:  
+          -all values must be positive  
+          -x must be a numeric vector  
+          -lambda is provided if transformed_x is not.  
 ```{r,fig.width=8,fig.align='center'}
 x <- c(1, 2, 3, 4, 10, 15, 25)
 box_diagnostics(x, lambda = 0.5)
